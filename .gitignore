@@ -39,12 +39,17 @@ venv.bak/
 .cursor/
 .DS_Store
 
-# Data files - allow directory structure but not large data files
-data/**/*.csv
+# Data files - allow directory structure and sample data for deployment
+# Keep sample data for Streamlit Cloud deployment
+data/cleaned_stocks/603026/*.csv
+data/ai_reports/603026/*.md
+# Exclude other large data files
 data/**/*.xlsx
 data/**/*.json.bak
 logs/
-*.csv
+# Exclude CSV files except sample data
+data/**/*.csv
+!data/cleaned_stocks/603026/*.csv
 *.xlsx
 *.json.bak
 

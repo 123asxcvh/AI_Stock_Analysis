@@ -479,7 +479,7 @@ class FinancialAnalysisComponent:
     def display_dimension_trend(self, data: Dict[str, Any], dimension: str):
         """根据维度绘制相关指标趋势图，并加时间滑块"""
         import pandas as pd
-        
+
         # 指标映射
         dim_metrics = {
             "盈利能力": ["净资产收益率", "销售净利率", "销售毛利率"],
@@ -498,8 +498,7 @@ class FinancialAnalysisComponent:
             df = data.get("stock_valuation")
         else:
             df = data.get("financial_indicators")
-        
-        # 调试信息：显示数据状态
+
         if df is None:
             st.warning(f"❌ {dimension}数据未找到")
             return
