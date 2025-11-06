@@ -1,0 +1,49 @@
+# 核心依赖
+streamlit>=1.28.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+statsmodels>=0.14.0
+pyecharts>=2.0.0
+akshare>=1.10.0
+baostock>=0.8.8
+tushare>=1.4.0
+mplfinance>=0.12.9b
+openpyxl>=3.1.0
+
+# 数据处理
+pandas>=1.5.0
+numpy>=1.21.0
+ta-lib>=0.4.0
+talib-binary>=0.4.0
+
+# 可视化
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# 机器学习
+scikit-learn>=1.1.0
+
+# 日志和配置
+loguru>=0.6.0
+pyyaml>=6.0
+
+# 异步处理
+aiofiles>=23.0.0
+
+# 缓存系统 (新增)
+redis>=4.5.0
+python-dotenv>=1.0.0
+
+# 开发工具
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+flake8>=5.0.0
+mypy>=0.991
+sphinx>=5.0.0
+sphinx-rtd-theme>=1.0.0
+
+# AI分析 (可选)
+openai>=1.0.0
+google-generativeai>=0.3.0
