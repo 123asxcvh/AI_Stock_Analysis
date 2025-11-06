@@ -57,11 +57,10 @@ def check_startup_requirements():
         if sys.version_info < (3, 8):
             raise RuntimeError("需要Python 3.8或更高版本")
 
-        # 检查必要的目录
+        # 检查必要的目录（data目录会在启动时自动创建）
         required_dirs = [
             project_root / "config",
-            project_root / "src",
-            project_root / "data"
+            project_root / "src"
         ]
 
         for dir_path in required_dirs:
