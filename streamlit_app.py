@@ -28,6 +28,27 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
+# 确保必要的目录存在
+def ensure_directories():
+    """确保项目所需的目录结构存在"""
+    directories = [
+        "data",
+        "data/stocks",
+        "data/cleaned_stocks",
+        "data/ai_reports",
+        "data/market_data",
+        "data/index_data",
+        "data/cache",
+        "logs"
+    ]
+
+    for dir_path in directories:
+        full_path = project_root / dir_path
+        full_path.mkdir(parents=True, exist_ok=True)
+
+# 在导入其他模块前创建目录
+ensure_directories()
+
 # 启动检查
 def check_startup_requirements():
     """检查启动所需的环境和依赖"""

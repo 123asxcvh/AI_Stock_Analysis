@@ -39,8 +39,10 @@ venv.bak/
 .cursor/
 .DS_Store
 
-# Data files (too large for git)
-data/
+# Data files - allow directory structure but not large data files
+data/**/*.csv
+data/**/*.xlsx
+data/**/*.json.bak
 logs/
 *.csv
 *.xlsx
