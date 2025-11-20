@@ -1,0 +1,47 @@
+# Core dependencies for Streamlit Cloud deployment
+streamlit>=1.28.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+statsmodels>=0.14.0
+pyecharts>=2.0.0
+akshare>=1.10.0
+baostock>=0.8.8
+tushare>=1.4.0
+mplfinance>=0.12.9b
+openpyxl>=3.1.0
+
+# Data processing
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Machine learning
+scikit-learn>=1.1.0
+
+# Logging and configuration
+loguru>=0.6.0
+pyyaml>=6.0
+
+# Async processing
+aiofiles>=23.0.0
+
+# Environment variables
+python-dotenv>=1.0.0
+
+# AI analysis
+google-generativeai>=0.3.0
+
+# AutoGen dependencies
+autogen-agentchat>=0.4.0
+autogen-ext[openai,mcp,filesystem,diskcache]>=0.4.0
+openai>=1.0.0
+
+# MCP dependencies
+mcp>=1.0.0
+
+# Web session management
+redis>=4.5.0
