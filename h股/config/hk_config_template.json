@@ -1,0 +1,278 @@
+{
+  "hk_stocks": {
+    "major_stocks": [
+      {
+        "code": "00700",
+        "name": "腾讯控股",
+        "sector": "科技",
+        "market_cap": "large",
+        "description": "中国领先的互联网增值服务提供商"
+      },
+      {
+        "code": "09988",
+        "name": "阿里巴巴-SW",
+        "sector": "科技",
+        "market_cap": "large",
+        "description": "中国领先的电子商务平台"
+      },
+      {
+        "code": "03690",
+        "name": "美团-W",
+        "sector": "科技",
+        "market_cap": "large",
+        "description": "中国领先的生活服务电子商务平台"
+      },
+      {
+        "code": "02318",
+        "name": "中国平安",
+        "sector": "金融",
+        "market_cap": "large",
+        "description": "中国领先的综合性金融集团"
+      },
+      {
+        "code": "02020",
+        "name": "安踏体育",
+        "sector": "消费",
+        "market_cap": "large",
+        "description": "中国领先的体育用品品牌"
+      }
+    ],
+    "mid_cap_stocks": [
+      {
+        "code": "00005",
+        "name": "汇丰控股",
+        "sector": "金融",
+        "market_cap": "mid",
+        "description": "全球领先的银行和金融服务集团"
+      },
+      {
+        "code": "00011",
+        "name": "恒生银行",
+        "sector": "金融",
+        "market_cap": "mid",
+        "description": "香港主要银行之一"
+      },
+      {
+        "code": "00023",
+        "name": "东亚银行",
+        "sector": "金融",
+        "market_cap": "mid",
+        "description": "香港主要银行之一"
+      },
+      {
+        "code": "00066",
+        "name": "港铁公司",
+        "sector": "公用事业",
+        "market_cap": "mid",
+        "description": "香港铁路运输服务提供商"
+      },
+      {
+        "code": "00101",
+        "name": "恒隆地产",
+        "sector": "地产",
+        "market_cap": "mid",
+        "description": "香港主要地产开发商"
+      }
+    ],
+    "small_cap_stocks": [
+      {
+        "code": "00267",
+        "name": "中信股份",
+        "sector": "综合",
+        "market_cap": "small",
+        "description": "中国中信集团旗下综合性企业"
+      },
+      {
+        "code": "00388",
+        "name": "香港交易所",
+        "sector": "金融",
+        "market_cap": "small",
+        "description": "香港证券及期货交易所"
+      },
+      {
+        "code": "00425",
+        "name": "敏实集团",
+        "sector": "工业",
+        "market_cap": "small",
+        "description": "汽车零部件制造商"
+      },
+      {
+        "code": "00588",
+        "name": "北京控股",
+        "sector": "公用事业",
+        "market_cap": "small",
+        "description": "北京市政府控股的公用事业公司"
+      },
+      {
+        "code": "00688",
+        "name": "中国海外发展",
+        "sector": "地产",
+        "market_cap": "small",
+        "description": "中国海外集团旗下地产公司"
+      }
+    ]
+  },
+  "hk_indexes": {
+    "major_indexes": [
+      {
+        "code": "HSI",
+        "name": "恒生指数",
+        "description": "香港主要股票指数，反映香港股市整体表现",
+        "type": "major"
+      },
+      {
+        "code": "HSCEI",
+        "name": "恒生中国企业指数",
+        "description": "反映在香港上市的中国企业股票表现",
+        "type": "major"
+      },
+      {
+        "code": "HSCCI",
+        "name": "恒生科技指数",
+        "description": "反映香港科技股表现",
+        "type": "major"
+      }
+    ],
+    "sector_indexes": [
+      {
+        "code": "HSFCI",
+        "name": "恒生金融分类指数",
+        "description": "反映香港金融股表现",
+        "type": "sector"
+      },
+      {
+        "code": "HSICI",
+        "name": "恒生工业分类指数",
+        "description": "反映香港工业股表现",
+        "type": "sector"
+      },
+      {
+        "code": "HSUTI",
+        "name": "恒生公用事业分类指数",
+        "description": "反映香港公用事业股表现",
+        "type": "sector"
+      }
+    ]
+  },
+  "hk_sectors": {
+    "priority_sectors": [
+      "科技",
+      "金融",
+      "地产",
+      "消费",
+      "公用事业",
+      "工业",
+      "能源",
+      "医疗保健",
+      "电信",
+      "材料"
+    ],
+    "sector_descriptions": {
+      "科技": "包括互联网、软件、硬件等科技相关企业",
+      "金融": "包括银行、保险、证券等金融机构",
+      "地产": "包括房地产开发、物业管理等企业",
+      "消费": "包括零售、餐饮、服装等消费相关企业",
+      "公用事业": "包括电力、燃气、水务等公用事业企业"
+    }
+  },
+  "data_types": {
+    "equity_data": [
+      "daily",
+      "minute",
+      "realtime",
+      "fund_flow",
+      "financial_statement",
+      "financial_indicators"
+    ],
+    "index_data": [
+      "daily",
+      "realtime"
+    ],
+    "sector_data": [
+      "sector_list",
+      "sector_stocks",
+      "sector_fund_flow"
+    ],
+    "market_data": [
+      "fund_flow",
+      "news",
+      "announcements"
+    ]
+  },
+  "time_periods": {
+    "daily_data": {
+      "start_date": "20200101",
+      "end_date": "22220101",
+      "adjust": "hfq"
+    },
+    "minute_data": {
+      "default_period": "5",
+      "available_periods": ["1", "5", "15", "30", "60"]
+    },
+    "realtime_data": {
+      "update_interval": 5,
+      "market_hours": {
+        "start": "09:30",
+        "end": "16:00"
+      }
+    }
+  },
+  "hk_data_collection": {
+    "max_workers": 8,
+    "request_delay": 0.5,
+    "max_retries": 3,
+    "retry_base_delay": 1.0,
+    "cache_enabled": true,
+    "data_root_dir": "data"
+  },
+  "batch_processing": {
+    "max_concurrent_stocks": 10,
+    "max_concurrent_indexes": 5,
+    "max_concurrent_sectors": 3,
+    "batch_delay": 1.0,
+    "batch_size": 20
+  },
+  "output_structure": {
+    "base_dir": "data/cleaned_stocks/hk",
+    "sub_dirs": {
+      "equities": {
+        "daily": "daily",
+        "minute": "minute",
+        "realtime": "realtime",
+        "fund_flow": "fund_flow",
+        "financials": "financials"
+      },
+      "indexes": {
+        "daily": "daily",
+        "realtime": "realtime"
+      },
+      "sectors": {
+        "sector_list": "sector_list",
+        "sector_stocks": "sector_stocks",
+        "sector_fund_flow": "sector_fund_flow"
+      },
+      "market": {
+        "fund_flow": "fund_flow",
+        "news": "news"
+      }
+    }
+  },
+  "error_handling": {
+    "skip_failed_stocks": true,
+    "log_failures": true,
+    "retry_failed_later": true,
+    "max_consecutive_failures": 5
+  },
+  "data_quality": {
+    "validate_data": true,
+    "min_data_points": 10,
+    "check_missing_values": true,
+    "fill_missing_strategy": "forward"
+  },
+  "performance": {
+    "enable_profiling": false,
+    "log_performance_metrics": true,
+    "optimize_memory_usage": true,
+    "compression_enabled": false
+  }
+}
