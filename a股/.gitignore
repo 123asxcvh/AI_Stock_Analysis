@@ -72,3 +72,4 @@ dmypy.json
 **/config.json
 **/*.json.backup
 config/unified_config.json
+config/config.py
