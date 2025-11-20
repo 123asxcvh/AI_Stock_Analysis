@@ -74,7 +74,7 @@ A股/
 ```bash
 # 克隆项目
 git clone <repository-url>
-cd a股
+cd AI_Stock_Analysis
 
 # 安装依赖
 pip install -r requirements.txt
