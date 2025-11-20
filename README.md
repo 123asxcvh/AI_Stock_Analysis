@@ -5,6 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
+[![AKShare](https://img.shields.io/badge/AKShare-1.10+-green.svg)](https://akshare.akfamily.xyz/)
 
 ## 📋 项目概述
 
@@ -12,42 +13,58 @@
 
 ### 🎯 核心特性
 
-- **📊 Web可视化界面**: 基于Streamlit的现代化Web应用
+- **📊 Web可视化界面**: 基于Streamlit的现代化Web应用，支持实时数据展示
 - **🤖 AI智能分析**:
   - **Google Gemini分析**: 智能财务分析和投资建议
-  - **AutoGen多智能体**: 8个专业AI智能体协作分析 (v3.0)
-  - **智能体职责分离**: 彻底解决重复分析问题
-- **📈 技术分析系统**: 完整的技术指标和图表分析
+  - **API轮换机制**: 支持多API密钥自动轮换，提高稳定性
+  - **多维度分析**: 财务报表、技术指标、市场情绪综合分析
+- **📈 技术分析系统**: 完整的技术指标和图表分析（MACD、RSI、KDJ、BOLL等）
 - **💰 财务分析**: 深度基本面分析和估值模型
-- **🔄 实时数据**: 支持多数据源的实时股票数据
-- **⚡ 回测系统**: 完整的策略回测和参数优化
+- **🔄 实时数据**: 支持AKShare、BaoStock等多数据源的实时股票数据
+- **⚡ 回测系统**: 完整的策略回测和参数优化框架
 - **🏭 行业分析**: 行业对比和趋势分析
+- **📡 数据管道**: 完整的数据爬取→清洗→分析→可视化流程
 
 ## 🏗️ 项目结构
 
 ```
 A股/
 ├── streamlit_app.py         # 🚀 主启动脚本 - Web应用入口
-├── requirements.txt        # 📦 项目依赖
+├── requirements.txt         # 📦 项目依赖
+├── config/                  # ⚙️ 配置文件
+│   ├── config.py           # 统一配置管理（API密钥、系统参数等）
+│   └── README.md           # 配置说明文档
 ├── src/                     # 💻 核心源代码
 │   ├── ai_analysis/        # 🤖 AI分析模块
+│   │   ├── comprehensive_stock_analyser.py    # 个股综合分析
+│   │   ├── comprehensive_market_analyser.py   # 市场综合分析
+│   │   └── prompts/                           # AI提示词管理
 │   ├── backtesting/        # 📊 回测系统
-│   ├── web/               # 🌐 Web应用组件
-│   ├── crawling/          # 📡 数据爬取
-│   ├── cleaning/          # 🧹 数据清洗
-│   └── launchers/         # 🚀 启动脚本
-├── autogen_graphflow/      # 🤖 AutoGen多智能体分析系统 (v3.0)
-│   ├── main.py            # 主程序 - 8智能体协作分析
-│   ├── config.py          # 配置管理 - MCP工具集成
-│   ├── agent_factory.py   # 智能体工厂 - 职责分离
-│   ├── prompt.py          # 提示词管理 - 严格职责限制
-│   ├── workflow.py        # GraphFlow工作流 - 顺序执行
-│   ├── report_saver.py    # 报告保存 - 用户优先
-│   └── README.md          # AutoGen系统文档
-├── config/                 # ⚙️ 配置文件
-├── data/                   # 📊 数据存储目录
-├── reports/                # 📄 分析报告输出
-└── .streamlit/            # 🎨 Streamlit配置
+│   │   ├── engine.py       # 回测引擎
+│   │   ├── strategies.py   # 策略定义
+│   │   └── evaluator.py   # 回测评估
+│   ├── web/                # 🌐 Web应用组件
+│   │   ├── components/     # UI组件（公司概况、财务分析、技术分析等）
+│   │   ├── templates/      # UI模板
+│   │   └── utils/         # 工具函数
+│   ├── crawling/           # 📡 数据爬取
+│   │   ├── stock_data_collector.py      # 股票数据收集
+│   │   └── market_data_collector.py     # 市场数据收集
+│   ├── cleaning/           # 🧹 数据清洗
+│   │   ├── stock_data_cleaner.py        # 股票数据清洗
+│   │   └── market_data_cleaner.py      # 市场数据清洗
+│   └── launchers/          # 🚀 启动脚本
+│       ├── run_data_pipeline_async.py           # 股票数据管道
+│       ├── run_data_ai_pipeline_async.py        # 股票AI分析管道
+│       ├── run_market_data_pipeline_async.py    # 市场数据管道
+│       └── run_market_ai_pipeline_async.py      # 市场AI分析管道
+├── data/                    # 📊 数据存储目录
+│   ├── stocks/             # 原始股票数据
+│   ├── cleaned_stocks/     # 清洗后股票数据
+│   ├── market_data/        # 市场数据
+│   ├── ai_reports/         # AI分析报告
+│   └── cache/              # 缓存数据
+└── logs/                    # 📝 日志文件
 ```
 
 ## 🚀 快速开始
@@ -68,13 +85,39 @@ python -c "import streamlit; import pandas; import akshare; print('✅ 核心依
 
 ### 2. 配置API密钥
 
+#### 方式一：在配置文件中配置（推荐）
+
+编辑 `config/config.py` 文件，在 `GEMINI_API_KEYS` 列表中添加你的API密钥：
+
+```python
+# Gemini API Keys - 用于轮换
+GEMINI_API_KEYS = [
+    "your-api-key-1",
+    "your-api-key-2",
+    # 可以添加多个密钥实现自动轮换
+]
+```
+
+**优势**：
+- 支持多密钥自动轮换，提高稳定性
+- 避免单点故障
+- 自动负载均衡
+
+#### 方式二：使用环境变量
+
 ```bash
 # 配置Gemini API (用于AI分析)
 export GEMINI_API_KEY="your-gemini-api-key"
 
-# 配置OpenAI/Kimi API (用于AutoGen多智能体)
-export OPENAI_API_KEY="your-openai-api-key"
-export KIMI_API_KEY="your-kimi-api-key"
+# 或使用 .env 文件
+echo "GEMINI_API_KEY=your-gemini-api-key" > .env
+```
+
+#### 获取API密钥
+
+1. 访问 [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. 创建新的API密钥
+3. 将密钥添加到配置文件中
 
 ### 3. 启动Web应用
 
@@ -106,30 +149,27 @@ python src/launchers/run_data_ai_pipeline_async.py 000001
 python src/launchers/run_market_ai_pipeline_async.py
 ```
 
-### 6. 使用AutoGen多智能体分析
+### 5. 完整工作流程示例
 
 ```bash
-# 进入AutoGen目录
-cd autogen_graphflow
-
-# 分析平安银行
-python main.py 000001
-```
-
-### 7. 完整工作流程示例
-
-```bash
-# 1. 数据获取
-python src/launchers/run_data_pipeline_async.py 000001&
+# 1. 数据获取（后台运行）
+python src/launchers/run_data_pipeline_async.py 000001 &
 python src/launchers/run_market_data_pipeline_async.py &
 
-# 2. 在另一个终端运行AI分析
+# 2. 等待数据爬取完成后，运行AI分析
 python src/launchers/run_data_ai_pipeline_async.py 000001
-python src/launchers/run_market_ai_data_pipeline_async.py
+python src/launchers/run_market_ai_pipeline_async.py
 
-# 3. 启动Web应用
+# 3. 启动Web应用查看结果
+streamlit run streamlit_app.py
+# 或
 python streamlit_app.py
 ```
+
+**提示**：
+- 首次运行需要先获取数据，建议先运行数据爬取脚本
+- AI分析需要数据文件存在，确保数据爬取完成后再运行
+- Web应用会自动扫描 `data/cleaned_stocks/` 目录下的股票数据
 
 ## 📊 Web应用功能
 
@@ -163,30 +203,49 @@ python streamlit_app.py
 - **风险评估**: 最大回撤和夏普比率分析
 - **业绩报告**: 详细的回测报告
 
-## 🤖 AutoGen多智能体分析
+## 🤖 AI智能分析系统
 
-### 🎯 核心突破
-- **8个专业智能体**: 严格职责分离，避免重复分析
-- **MCP工具集成**: Tavily搜索 + 结构化思维工具
-- **实时数据获取**: 基于最新市场信息的专业分析
-- **用户优先报告**: 用户请求在前，精简结果输出
+### 🎯 核心特性
+- **多维度分析**: 财务报表、技术指标、市场情绪综合分析
+- **API轮换机制**: 支持多API密钥自动轮换，提高稳定性
+- **实时数据获取**: 基于AKShare等数据源的最新市场信息
+- **智能报告生成**: 自动生成Markdown格式的分析报告
 
-### 🤖 智能体团队
+### 📊 分析模块
+
+#### 个股分析 (`comprehensive_stock_analyser.py`)
+- **公司概况分析**: 公司基本信息、业务模式、行业地位
+- **财务报表分析**: 资产负债表、利润表、现金流量表深度分析
+- **财务指标分析**: ROE、ROA、PE、PB等关键指标评估
+- **技术分析**: K线形态、技术指标、趋势判断
+- **综合分析**: 整合所有维度，生成投资建议
+
+#### 市场分析 (`comprehensive_market_analyser.py`)
+- **市场情绪分析**: 资金流向、市场热度、投资者情绪
+- **板块分析**: 行业板块表现、资金流向、热点追踪
+- **新闻舆情分析**: 重大新闻事件、市场反应、政策影响
+- **综合市场报告**: 市场整体状况和投资机会
+
+### 📁 报告输出
+
+AI分析报告保存在 `data/ai_reports/` 目录下：
+
 ```
-🎯 协调者 → 🏢 公司基本面 → 📊 财务数据 → 🏭 行业分析
-       ↓
-📰 市场分析 → 🗞️ 新闻舆情 → 📈 技术分析 → 💡 投资策略
+data/ai_reports/
+├── {股票代码}/
+│   ├── company_profile.md           # 公司概况
+│   ├── income_statement_analysis.md # 利润表分析
+│   ├── balance_sheet_analysis.md    # 资产负债表分析
+│   ├── cash_flow_analysis.md        # 现金流量表分析
+│   ├── financial_indicators_analysis.md # 财务指标分析
+│   ├── technical_analysis.md        # 技术分析
+│   ├── intraday_trading.md          # 日内交易分析
+│   └── comprehensive.md             # 综合分析报告
+└── market_analysis/
+    ├── comprehensive.md             # 市场综合分析
+    ├── fund_flow_industry.md        # 行业资金流向
+    └── news_main_cx.md              # 新闻舆情分析
 ```
-
-### 📋 智能体详情
-1. **🎯 Coordinator Agent**: 制定分析策略和任务分工
-2. **🏢 Company Analyst**: 专注公司基本面和商业模式分析
-3. **📊 Financial Analyst**: 专业财务数据和估值分析
-4. **🏭 Industry Analyst**: 行业趋势和竞争格局分析
-5. **📰 Market Analyst**: 市场情绪和资金流向分析
-6. **🗞️ News Analyst**: 新闻舆情和重大事件分析
-7. **📈 Technical Analyst**: 技术指标和价格走势分析
-8. **💡 Strategy Advisor**: 整合所有分析，提供最终投资建议
 
 ## 🛠️ 技术架构
 
@@ -202,52 +261,69 @@ python streamlit_app.py
 - **AKShare/BaoStock**: 股票数据获取
 
 ### AI技术
-- **Google Gemini**: 大语言模型API
-- **AutoGen 0.4+**: 多智能体协作框架
-- **MCP**: Model Context Protocol
-- **OpenAI API**: 补充AI分析能力
+- **Google Gemini**: 大语言模型API（支持API轮换）
+- **API轮换机制**: 多密钥自动轮换，提高稳定性
+- **异步处理**: 支持并发AI分析请求
 
 ### 数据源
-- **AKShare**: 实时股票数据
-- **Tavily Search**: 实时新闻和资讯
+- **AKShare**: A股实时和历史数据（主要数据源）
+- **BaoStock**: 备用数据源
+- **Tushare**: 补充数据源
 
 ## 📋 数据流架构
 
 ```
-实时数据源 → 数据爬取 → 数据清洗 → 数据存储
-    ↓                                    ↓
-Web应用界面 ← 数据分析 ← AI智能分析 ← 历史数据
-                    ↓
-               AutoGen多智能体协作
+┌─────────────────────────────────────────────────────────┐
+│                   数据获取层                              │
+│  AKShare/BaoStock → 数据爬取 → 数据清洗 → 数据存储      │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│                   数据分析层                              │
+│  技术分析 → 财务分析 → 行业分析 → 市场分析              │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│                   AI智能分析层                            │
+│  Gemini API → 多维度分析 → 报告生成                     │
+│  (支持API轮换)                                          │
+└─────────────────────────────────────────────────────────┘
+                        ↓
+┌─────────────────────────────────────────────────────────┐
+│                   可视化展示层                            │
+│  Streamlit Web应用 → 交互式图表 → 分析报告展示         │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ## 📚 详细文档
 
 ### 📖 用户文档
-- **[🤖 AutoGen多智能体系统](autogen_graphflow/README.md)** - 详细使用指南
 - **[📊 Web应用使用指南](src/web/README.md)** - 界面功能说明
 - **[🔧 配置参考](config/README.md)** - 配置详细说明
+- **[🧪 回测系统指南](src/backtesting/README.md)** - 回测系统使用
 
 ### 👨‍💻 开发文档
-- **[💻 API接口文档](docs/api.md)** - API接口文档
 - **[🧪 策略开发指南](src/backtesting/README.md)** - 策略开发
-- **[🎨 界面定制](docs/ui-customization.md)** - 界面定制指南
+- **[📡 数据爬取模块](src/crawling/)** - 数据获取实现
+- **[🧹 数据清洗模块](src/cleaning/)** - 数据清洗实现
 
 ### 📋 参考文档
 - **[AKShare文档](https://akshare.akfamily.xyz/)** - 数据获取API
 - **[Streamlit文档](https://docs.streamlit.io/)** - Web应用框架
-- **[AutoGen文档](https://microsoft.github.io/autogen/)** - 多智能体框架
 - **[Pandas文档](https://pandas.pydata.org/docs/)** - 数据处理库
 - **[Plotly文档](https://plotly.com/python/)** - 可视化库
+- **[Google Gemini API](https://ai.google.dev/)** - Gemini API文档
 
 ## 🌟 核心优势
 
 1. **🎯 专业级分析**: 结合传统量化分析和现代AI技术
-2. **🤖 多智能体协作**: AutoGen 8智能体深度分析，避免认知偏差
+2. **🔄 API轮换机制**: 多密钥自动轮换，提高系统稳定性和可用性
 3. **📊 可视化友好**: 现代化Web界面，数据可视化直观
 4. **⚡ 实时性能**: 实时数据更新，快速响应用户需求
 5. **🔧 易于扩展**: 模块化设计，支持功能定制和扩展
 6. **💡 智能决策**: AI辅助投资决策，提高分析效率
+7. **📡 完整数据流**: 从数据获取到分析展示的完整流程
+8. **🏭 A股专注**: 专门针对A股市场优化，支持中国股市特色功能
 
 ## 📊 项目统计
 
@@ -273,13 +349,22 @@ Web应用界面 ← 数据分析 ← AI智能分析 ← 历史数据
 
 ## 🔮 发展路线
 
-### 已完成 ✅ (v3.0)
+### 已完成 ✅ (v2.0)
 - [x] Web可视化界面 (v1.0)
-- [x] AI智能分析 (v2.0)
-- [x] AutoGen多智能体系统 (v3.0)
+- [x] AI智能分析系统 (v2.0)
+- [x] API轮换机制
 - [x] 实时数据集成
 - [x] 完整回测系统
 - [x] Launcher批处理框架
+- [x] 多维度财务分析
+- [x] 技术指标分析
+- [x] 行业对比分析
+
+### 计划中 🚧
+- [ ] 实时预警系统
+- [ ] 更多技术指标支持
+- [ ] 移动端适配
+- [ ] 数据导出功能增强
 
 ## 🤝 贡献指南
 
@@ -309,6 +394,29 @@ Web应用界面 ← 数据分析 ← AI智能分析 ← 历史数据
 
 *🚀 智能股票分析系统 - 让投资更科学，让决策更理性*
 
-🔥 **核心特色**: 🤖 AutoGen多智能体协作 + 📊 实时数据分析 + 💰 AI智能投资建议
+🔥 **核心特色**: 🤖 AI智能分析 + 📊 实时数据分析 + 💰 专业投资建议 + 🔄 API轮换机制
 
-**用科技赋能投资，让AI协作更专业**
+**用科技赋能投资，让分析更专业**
+
+---
+
+## 💡 常见问题
+
+### Q: 如何配置多个API密钥？
+A: 在 `config/config.py` 文件的 `GEMINI_API_KEYS` 列表中添加多个密钥，系统会自动轮换使用。
+
+### Q: 数据爬取失败怎么办？
+A: 检查网络连接，确保可以访问AKShare数据源。如果持续失败，可以尝试使用BaoStock作为备用数据源。
+
+### Q: Web应用无法启动？
+A: 确保已安装所有依赖：`pip install -r requirements.txt`，并检查端口8501是否被占用。
+
+### Q: AI分析报告在哪里？
+A: 报告保存在 `data/ai_reports/` 目录下，按股票代码分类存储。
+
+### Q: 如何添加新的技术指标？
+A: 在 `src/backtesting/indicators.py` 中添加指标计算函数，然后在策略中使用。
+
+---
+
+**⭐ 如果这个项目对你有帮助，欢迎Star支持！**
